@@ -1,4 +1,5 @@
-import tkinter as tk
+from start_gui import StartGUI
 
+StartGUI()
 
 
