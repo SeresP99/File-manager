@@ -4,6 +4,8 @@ from tkinter import messagebox
 from tkinter import filedialog
 from PIL import Image, ImageTk
 
+from file_manager_gui import FileManagerGUI
+
 import os
 
 
@@ -14,6 +16,8 @@ class StartGUI:
         self.root = tk.Tk()
         self.root.geometry("500x500")
         self.root.resizable(True, True)
+        self.root.minsize(810, 500)
+        self.root.size()
 
         # you have to configure the window columns and rows in order to center, then add the grid
         self.root.rowconfigure(0, weight=1)
@@ -38,5 +42,7 @@ class StartGUI:
 
     def browse_for_directory(self):
         self.directory = filedialog.askdirectory()
-        messagebox.showinfo(message=str(os.listdir(self.directory)))
+        # messagebox.showinfo(message=str(os.listdir(self.directory)))
         self.fileList = os.listdir(self.directory)
+        self.root.destroy()
+        FileManagerGUI(self.fileList, self.directory)
