@@ -35,4 +35,30 @@ class FileManagerGUI:
 
         self.grid.pack(padx=10, pady=10)
 
+        print(len(self.fileList))
+        print(self.currentFileIndex)
+
         self.root.mainloop()
+
+    def next_button_command(self):
+        # "end-1c": the last index
+        self.textBox.delete("1.0", 'end-1c')
+        self.currentFileIndex = self.currentFileIndex + 1
+        self.textBox.insert("1.0", str(self.fileList[self.currentFileIndex]))
+        self.previousButton["state"] = "normal"
+
+        if self.currentFileIndex == len(self.fileList) - 1:
+            self.nextButton["state"] = "disabled"
+
+        print(self.currentFileIndex)
+
+    def previous_button_command(self):
+        self.textBox.delete("1.0", 'end-1c')
+        self.currentFileIndex = self.currentFileIndex - 1
+        self.textBox.insert("1.0", str(self.fileList[self.currentFileIndex]))
+        self.nextButton["state"] = "normal"
+
+        if self.currentFileIndex == 0:
+            self.previousButton["state"] = "disabled"
+
+        print(self.currentFileIndex)
