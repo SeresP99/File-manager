@@ -9,10 +9,10 @@ class FileManagerGUI:
 
         self.root = tk.Tk()
         self.root.geometry("800x500")
-        #self.root.resizable(False, False)
+        # self.root.resizable(False, False)
 
         self.grid = tk.Frame(self.root)
-        #rows and columns must be configured
+        # rows and columns must be configured
         self.grid.columnconfigure(0, weight=1)
         self.grid.columnconfigure(1, weight=1)
         self.grid.columnconfigure(2, weight=1)
@@ -24,10 +24,11 @@ class FileManagerGUI:
         self.textBox.grid(padx=10, pady=10, columnspan=3, row=0, column=0)
         self.textBox.insert("1.0", str(self.fileList[0]))
 
-        self.previousButton = tk.Button(self.grid, font=("Arial", 18), text="Previous", state="disabled", command=self.previous_button_command)
+        self.previousButton = tk.Button(self.grid, font=("Arial", 18), text="Previous", state="disabled",
+                                        command=self.previous_button_command)
         self.previousButton.grid(padx=10, pady=10, row=1, column=0, sticky="EW")
 
-        self.openButton = tk.Button(self.grid, font=("Arial", 18), text="Open")
+        self.openButton = tk.Button(self.grid, font=("Arial", 18), text="Open", command=self.open_file_button_command)
         self.openButton.grid(padx=10, pady=10, row=1, column=1, sticky="EW")
 
         self.nextButton = tk.Button(self.grid, font=("Arial", 18), text="Next", command=self.next_button_command)
@@ -62,3 +63,6 @@ class FileManagerGUI:
             self.previousButton["state"] = "disabled"
 
         print(self.currentFileIndex)
+
+    def open_file_button_command(self):
+        os.startfile(self.directory + "/" + self.fileList[self.currentFileIndex])
