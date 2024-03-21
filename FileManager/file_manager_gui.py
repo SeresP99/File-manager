@@ -66,3 +66,7 @@ class FileManagerGUI:
 
     def open_file_button_command(self):
         os.startfile(self.directory + "/" + self.fileList[self.currentFileIndex])
+        with open(self.directory + "/" + self.fileList[self.currentFileIndex], 'r') as file:
+            file_string = file.read()
+            self.textBox.delete("1.0", 'end-1c')
+            self.textBox.insert("1.0", file_string)
