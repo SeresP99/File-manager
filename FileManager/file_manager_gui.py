@@ -36,6 +36,11 @@ class FileManagerGUI:
 
         self.grid.pack(padx=10, pady=10)
 
+        self.marked = False
+        self.markForDeletionButton = tk.Button(self.root, font=("Arial", 18), text="Mark for Deletion",
+                                               command=self.toggle_mark_for_deletion)
+        self.markForDeletionButton.pack(padx=10, pady=10)
+
         print(len(self.fileList))
         print(self.currentFileIndex)
 
