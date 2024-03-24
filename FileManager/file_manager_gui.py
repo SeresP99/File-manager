@@ -82,6 +82,9 @@ class FileManagerGUI:
                                                                           marked_for_deletion)
         self.update_mark_for_deletion_button()
         print(self.file_array)
+
+    def update_mark_for_deletion_button(self):
+        if self.file_array[self.currentFileIndex].marked_for_deletion:
             self.markForDeletionButton["background"] = "red"
         else:
             self.markForDeletionButton["background"] = "SystemButtonFace"  # default background color
