@@ -5,6 +5,7 @@ import tkinter as tk
 class FileManagerGUI:
     def __init__(self, fileList, directory):
         self.fileList = fileList
+        self.file_array = create_file_array(self.fileList)
         self.directory = directory
         self.currentFileIndex = 0
 
@@ -88,11 +89,19 @@ class FileManagerGUI:
             self.markForDeletionButton["background"] = "red"
         else:
             self.markForDeletionButton["background"] = "SystemButtonFace"  # default background color
-        
+
+
 class File:
     def __init__(self, file_name):
         self.fileName = file_name
         self.marked_for_deletion = False
+
+    def __str__(self):
+        return "file_name: " + self.fileName + " marked_for_deletion: " + 'true' if True else 'false'
+
+    def __repr__(self):
+        return "file_name: " + self.fileName + " marked_for_deletion: " + 'true' if True else 'false'
+
 
 def create_file_array(file_list):
     file_array = []
