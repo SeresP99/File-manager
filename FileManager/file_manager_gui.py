@@ -88,3 +88,9 @@ class File:
     def __init__(self, file_name):
         self.fileName = file_name
         self.marked_for_deletion = False
+
+def create_file_array(file_list):
+    file_array = []
+    for item in file_list:
+        file_array.append(File(item))
+    return file_array
