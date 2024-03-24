@@ -78,8 +78,10 @@ class FileManagerGUI:
             self.textBox.insert("1.0", file_string)
 
     def toggle_mark_for_deletion(self):
-        self.marked = not self.marked
-        if self.marked:
+        self.file_array[self.currentFileIndex].marked_for_deletion = not (self.file_array[self.currentFileIndex].
+                                                                          marked_for_deletion)
+        self.update_mark_for_deletion_button()
+        print(self.file_array)
             self.markForDeletionButton["background"] = "red"
         else:
             self.markForDeletionButton["background"] = "SystemButtonFace"  # default background color
