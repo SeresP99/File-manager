@@ -1,3 +1,4 @@
+import os
 import tkinter as tk
 
 
@@ -83,3 +84,7 @@ class FileManagerGUI:
         else:
             self.markForDeletionButton["background"] = "SystemButtonFace"  # default background color
         
+class File:
+    def __init__(self, file_name):
+        self.fileName = file_name
+        self.marked_for_deletion = False
