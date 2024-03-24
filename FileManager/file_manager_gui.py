@@ -59,6 +59,7 @@ class FileManagerGUI:
             self.nextButton["state"] = "disabled"
 
         print(self.currentFileIndex)
+        self.update_mark_for_deletion_button()
 
     def previous_button_command(self):
         self.textBox.delete("1.0", 'end-1c')
@@ -70,6 +71,7 @@ class FileManagerGUI:
             self.previousButton["state"] = "disabled"
 
         print(self.currentFileIndex)
+        self.update_mark_for_deletion_button()
 
     def open_file_button_command(self):
         os.startfile(self.directory + "/" + self.fileList[self.currentFileIndex])
