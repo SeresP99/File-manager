@@ -1,6 +1,8 @@
 import os
 import tkinter as tk
 
+from conclusion_screen import ConclusionScreen
+from file import File
 
 class FileManagerGUI:
     def __init__(self, fileList, directory):
