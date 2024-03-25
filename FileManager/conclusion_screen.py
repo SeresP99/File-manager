@@ -32,3 +32,22 @@ class ConclusionScreen:
         panel.pack(side="left")
 
         self.root.mainloop()
+
+
+class FileRowRecycleView:
+    def __init__(self, root, file_name):
+        self.Grid = tk.Frame(root)
+
+        self.Grid.columnconfigure(0, weight=1)
+        self.Grid.columnconfigure(1, weight=1)
+
+        self.Grid.rowconfigure(0, weight=1)
+
+        self.FileLabel = tk.Label(root, text=file_name)
+        self.FileLabel.grid(row=0, column=0, sticky="nsew")
+
+        self.UndoButton = tk.Button(root, text="Undo")
+        self.UndoButton.grid(row=0, column=1)
+
+        self.Grid.grid()
+
