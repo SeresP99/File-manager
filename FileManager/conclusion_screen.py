@@ -24,4 +24,11 @@ class ConclusionScreen:
             temp_label.pack(padx=10, pady=10, anchor="nw")
             recycle_view_array.append(temp_label)
 
+        path = "x.jpg"
+        img = Image.open(path)
+        img = img.resize((15, 15))
+        bitmap = ImageTk.PhotoImage(img)
+        panel = tk.Label(self.root, image=bitmap)
+        panel.pack(side="left")
+
         self.root.mainloop()
