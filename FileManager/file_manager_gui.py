@@ -100,6 +100,31 @@ class FileManagerGUI:
     def continue_to_conclusion(self):
         ConclusionScreen(self.file_array, self.directory)
 
+    def try_text_preview(self):
+        try:
+            self.imagePanel.grid_forget()
+            file = open(self.directory + "/" + self.file_array[self.currentFileIndex].fileName, 'r')
+            file_string = file.read()
+            self.textBox.grid(padx=10, pady=10, columnspan=3, row=1, column=0, sticky="nsew")
+            self.textBox.delete("1.0", 'end-1c')
+            self.textBox.insert("1.0", file_string)
+            return True
+        except UnicodeDecodeError:
+            print("File is non text.")
+            return False
+
+    def try_picture_open(self):
+        self.textBox.grid_forget()
+        path = self.directory + "/" + self.file_array[self.currentFileIndex].fileName
+        img = Image.open(path)
+        # img = img.resize((int(img.width*0.5), int(img.height*0.5)))
+        img = downscale(img)
+        self.bitmap = ImageTk.PhotoImage(img)
+        print(self.grid.grid_bbox(0, 0))
+        self.imagePanel = tk.Label(self.grid, image=self.bitmap, anchor="center")
+        self.imagePanel.grid_forget()
+        self.imagePanel.grid(padx=10, pady=10, columnspan=3, row=1, column=0, sticky="nsew")
+
 
 def create_file_array(file_list):
     file_array = []
