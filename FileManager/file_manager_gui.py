@@ -17,30 +17,41 @@ class FileManagerGUI:
         self.root.geometry("800x500")
         # self.root.resizable(False, False)
 
+        self.root.rowconfigure(0, weight=1)
+        self.root.columnconfigure(0, weight=1)
+
         self.grid = tk.Frame(self.root)
         # rows and columns must be configured
         self.grid.columnconfigure(0, weight=1)
         self.grid.columnconfigure(1, weight=1)
         self.grid.columnconfigure(2, weight=1)
 
-        self.grid.rowconfigure(0, weight=2)
-        self.grid.rowconfigure(1, weight=1)
+        self.grid.rowconfigure(0, weight=1)  # filename label
+        self.grid.rowconfigure(1, weight=1)  # content
+        self.grid.rowconfigure(2, weight=2)  # button row
+
+        self.fileNameLabel = tk.Label(self.grid, font=("Arial", 18),
+                                      text=str(self.file_array[self.currentFileIndex].fileName))
+        self.fileNameLabel.grid(row=0, column=0, columnspan=3, sticky="nsew")
 
         self.textBox = tk.Text(self.grid, height=10, font=("Arial", 18))
-        self.textBox.grid(padx=10, pady=10, columnspan=3, row=0, column=0)
-        self.textBox.insert("1.0", str(self.fileList[0]))
+        self.textBox.grid(padx=10, pady=10, columnspan=3, row=1, column=0, sticky="nsew")
+        #self.textBox.insert("1.0", str(self.fileList[0]))
+
+        self.imagePanel = tk.Label(self.grid)
+        self.imagePanel.grid(row=1, column=0, columnspan=3, sticky="nsew")
 
         self.previousButton = tk.Button(self.grid, font=("Arial", 18), text="Previous", state="disabled",
                                         command=self.previous_button_command)
-        self.previousButton.grid(padx=10, pady=10, row=1, column=0, sticky="EW")
+        self.previousButton.grid(padx=10, pady=10, row=2, column=0, sticky="EWS")
 
         self.openButton = tk.Button(self.grid, font=("Arial", 18), text="Open", command=self.open_file_button_command)
-        self.openButton.grid(padx=10, pady=10, row=1, column=1, sticky="EW")
+        self.openButton.grid(padx=10, pady=10, row=2, column=1, sticky="EWS")
 
         self.nextButton = tk.Button(self.grid, font=("Arial", 18), text="Next", command=self.next_button_command)
-        self.nextButton.grid(padx=10, pady=10, row=1, column=2, sticky="EW")
+        self.nextButton.grid(padx=10, pady=10, row=2, column=2, sticky="EWS")
 
-        self.grid.pack(padx=10, pady=10)
+        self.grid.grid(row=0, column=0, padx=10, pady=10, sticky="nsew")
 
         self.markForDeletionButton = tk.Button(self.root, font=("Arial", 18), text="Mark for Deletion",
                                                command=self.toggle_mark_for_deletion)
