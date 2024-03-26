@@ -55,9 +55,13 @@ class FileManagerGUI:
 
     def next_button_command(self):
         # "end-1c": the last index
-        self.textBox.delete("1.0", 'end-1c')
+
         self.currentFileIndex = self.currentFileIndex + 1
-        self.textBox.insert("1.0", str(self.fileList[self.currentFileIndex]))
+        self.fileNameLabel["text"] = self.file_array[self.currentFileIndex].fileName
+
+        if not self.try_text_preview():
+            self.try_picture_open()
+
         self.previousButton["state"] = "normal"
 
         if self.currentFileIndex == len(self.fileList) - 1:
@@ -67,9 +71,13 @@ class FileManagerGUI:
         self.update_mark_for_deletion_button()
 
     def previous_button_command(self):
-        self.textBox.delete("1.0", 'end-1c')
+
         self.currentFileIndex = self.currentFileIndex - 1
-        self.textBox.insert("1.0", str(self.fileList[self.currentFileIndex]))
+        self.fileNameLabel["text"] = self.file_array[self.currentFileIndex].fileName
+
+        if not self.try_text_preview():
+            self.try_picture_open()
+
         self.nextButton["state"] = "normal"
 
         if self.currentFileIndex == 0:
