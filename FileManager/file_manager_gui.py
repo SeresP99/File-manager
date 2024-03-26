@@ -139,9 +139,9 @@ class FileManagerGUI:
         path = self.directory + "/" + self.file_array[self.currentFileIndex].fileName
         img = Image.open(path)
         # img = img.resize((int(img.width*0.5), int(img.height*0.5)))
-        img = downscale(img)
+        img = downscale_to_grid_cell(img, self.grid)
         self.bitmap = ImageTk.PhotoImage(img)
-        print(self.grid.grid_bbox(0, 0))
+        print(self.grid.winfo_width())
         self.imagePanel = tk.Label(self.grid, image=self.bitmap, anchor="center")
         self.imagePanel.grid_forget()
         self.imagePanel.grid(padx=10, pady=10, columnspan=3, row=1, column=0, sticky="nsew")

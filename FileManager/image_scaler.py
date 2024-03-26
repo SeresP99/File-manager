@@ -1,3 +1,6 @@
+import tkinter as tk
+
+
 def downscale(img):
     if img.height >= 6000 or img.width >= 6000:
         return downscale_larger_than_6000px(img)
@@ -37,3 +40,14 @@ def downscale_larger_than_2000px(img):
 def downscale_larger_than_1000px(img):
     return img.resize((int(img.width * 0.5), int(img.height * 0.5)))
 
+
+def downscale_to_grid_cell(img, grid):
+    grid_width = grid.winfo_width()
+    if img.width > grid_width:
+        difference = img.width - grid_width
+        width_deduction_percent = difference / img.width
+        value_to_deduct_from_width = width_deduction_percent * img.width
+        value_to_deduct_from_height = width_deduction_percent * img.height
+        return img.resize((int(img.width - value_to_deduct_from_width), int(img.height - value_to_deduct_from_height)))
+
+    return img
