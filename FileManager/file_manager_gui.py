@@ -3,6 +3,7 @@ import tkinter as tk
 
 from conclusion_screen import ConclusionScreen
 from file import File
+from PIL import Image, ImageTk
 
 class FileManagerGUI:
     def __init__(self, fileList, directory):
@@ -10,6 +11,7 @@ class FileManagerGUI:
         self.file_array = create_file_array(self.fileList)
         self.directory = directory
         self.currentFileIndex = 0
+        self.bitmap = None
 
         self.root = tk.Tk()
         self.root.geometry("800x500")
